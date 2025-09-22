@@ -14,7 +14,7 @@ const createPost = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllPosts = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await PostServices.getAllPosts();
+        const result = await PostServices.getAllPosts(req.query as Record<string, string>);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json(error);
