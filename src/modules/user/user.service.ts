@@ -66,7 +66,7 @@ const updateUser = async (id: number, payload: Prisma.UserUpdateInput) => {
     return updateUser;
 };
 
-const deletUser = async (id: number) => {
+const deleteUser = async (id: number) => {
     const deleteUser = await prisma.user.delete({
         where: {
             id
@@ -81,5 +81,5 @@ export const UserSerivces = {
     getAllUsers,
     getUserById,
     updateUser,
-    deletUser
+    deleteUser
 };

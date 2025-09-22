@@ -12,6 +12,47 @@ const createPost = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+const getAllPosts = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await PostServices.getAllPosts();
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+const getPostById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await PostServices.getPostById(Number(req.params.id));
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+const updatePost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await PostServices.updatePost(Number(req.params.id), req.body);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+const deletePost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await PostServices.deletePost(Number(req.params.id));
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+
 export const PostController = {
-    createPost
+    createPost,
+    getAllPosts,
+    getPostById,
+    updatePost,
+    deletePost
 };
