@@ -30,6 +30,15 @@ const getPostById = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+const getBlogStat = async (req: Request, res: Response) => {
+    try {
+        const result = await PostServices.getBlogStats();
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: "Failed to fetch stats", details: err });
+    }
+};
+
 const updatePost = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await PostServices.updatePost(Number(req.params.id), req.body);
@@ -53,6 +62,7 @@ export const PostController = {
     createPost,
     getAllPosts,
     getPostById,
+    getBlogStat,
     updatePost,
     deletePost
 };
